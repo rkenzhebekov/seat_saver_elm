@@ -1,2 +1,80 @@
-var _user$project$SeatSaver$view = _elm_lang$html$Html$text('Woo hoo, I\'m in a View');
-var _user$project$SeatSaver$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(_user$project$SeatSaver$view);
+var _user$project$SeatSaver$seatItem = function (seat) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('seat available'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(seat.seatNo)),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$SeatSaver$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$ul,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('seats'),
+			_1: {ctor: '[]'}
+		},
+		A2(_elm_lang$core$List$map, _user$project$SeatSaver$seatItem, model));
+};
+var _user$project$SeatSaver$init = {
+	ctor: '::',
+	_0: {seatNo: 1, occupied: false},
+	_1: {
+		ctor: '::',
+		_0: {seatNo: 2, occupied: false},
+		_1: {
+			ctor: '::',
+			_0: {seatNo: 3, occupied: false},
+			_1: {
+				ctor: '::',
+				_0: {seatNo: 4, occupied: false},
+				_1: {
+					ctor: '::',
+					_0: {seatNo: 5, occupied: false},
+					_1: {
+						ctor: '::',
+						_0: {seatNo: 6, occupied: false},
+						_1: {
+							ctor: '::',
+							_0: {seatNo: 7, occupied: false},
+							_1: {
+								ctor: '::',
+								_0: {seatNo: 8, occupied: false},
+								_1: {
+									ctor: '::',
+									_0: {seatNo: 9, occupied: false},
+									_1: {
+										ctor: '::',
+										_0: {seatNo: 10, occupied: false},
+										_1: {
+											ctor: '::',
+											_0: {seatNo: 11, occupied: false},
+											_1: {
+												ctor: '::',
+												_0: {seatNo: 12, occupied: false},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
+var _user$project$SeatSaver$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	_user$project$SeatSaver$view(_user$project$SeatSaver$init));
+var _user$project$SeatSaver$Seat = F2(
+	function (a, b) {
+		return {seatNo: a, occupied: b};
+	});
