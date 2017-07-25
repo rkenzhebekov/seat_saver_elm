@@ -1,4 +1,4 @@
-module SeatSaver exposing (..)
+port module SeatSaver exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
@@ -60,6 +60,7 @@ initialModel =
 type Msg
   = Toggle Seat
   | FetchSeats (Result Http.Error (List Seat))
+  | SetSeats (List Seat)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -83,6 +84,11 @@ update msg model =
       in
         (model, Cmd.none)
 
+    SetSeats (seats) ->
+      let
+        _ = Debug.log "Got seats form ws:" seats
+      in
+        (seats, Cmd.none)
 
 -- VIEW
 
@@ -107,9 +113,14 @@ seatItem seat =
 main : Program Never Model Msg
 main =
   Html.program
-    { init = ( initialModel, (getSeats FetchSeats seatsUrl) )
+    { init = ( initialModel, Cmd.none )
     , view = view
     , update = update
-    , subscriptions = (\_ -> Sub.none)
+    , subscriptions = subscriptions
     }
 
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  seats SetSeats
+
+port seats : (List Seat -> msg) -> Sub msg
